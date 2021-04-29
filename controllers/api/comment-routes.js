@@ -27,6 +27,7 @@ router.post('/', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
+  if (req.session) {
   Comment.destroy({
     where: {
       id: req.params.id
@@ -43,6 +44,7 @@ router.delete('/:id', (req, res) => {
       console.log(err);
       res.status(500).json(err);
     });
+  }
 });
 
 module.exports = router;
